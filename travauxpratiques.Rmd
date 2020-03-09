@@ -1,0 +1,73 @@
+---
+title: "camil"
+author: "Elisa Pellegrino- Eva Michel"
+date: "3/3/2020"
+output: html_document
+---
+```{r}
+knitr::opts_chunk$set(echo = TRUE)
+SciViews::R
+library(vegan)
+```
+
+
+```{r}
+
+library(readxl)
+cami <- read_excel("Camiculidae.xlsx", 
+    n_max = 22)
+
+
+skimr::skim(cami)
+```
+
+
+
+```{r}
+cam_dist <- vegan::vegdist(cami[, -1], method = "euclidean")
+```
+```{r}
+cam_eucli <- hclust(cam_dist,method= "complete")
+
+plot(cam_eucli,hang=-1,main="titre",sub="sous titre",xlab="axe x",ylab="dist euclidienne")
+```
+
+```{r}
+cam_eucli <- hclust(cam_dist,method= "simple")
+
+plot(cam_eucli,hang=-1,main="titre",sub="sous titre",xlab="axe x",ylab="dist euclidienne")
+```
+
+
+min 6 dendrogrammes 
+
+```{r}
+cam_dist1 <- vegan::vegdist(cami[, -1], method = "bray")
+
+cam_bray <- hclust(cam_dist1,method= "complete")
+
+plot(cam_bray,hang=-1,main="titre",sub="sous titre",xlab="axe x",ylab="dist euclidienne")
+
+```
+
+```{r}
+cam_brays <- hclust(cam_dist1,method= "simple")
+
+plot(cam_brays,hang=-1,main="titre",sub="sous titre",xlab="axe x",ylab="dist euclidi")
+```
+
+```{r}
+cam_dist2 <- vegan::vegdist(cami[, -1], method = "canberra")
+```
+```{r}
+cam_canberrac <- hclust(cam_dist2,method= "complete")
+
+plot(cam_canberrac,hang=-1,main="titre",sub="sous titre",xlab="axe x",ylab="dist euclidienne")
+```
+
+```{r}
+cam_canberras <- hclust(cam_dist2,method= "simple")
+
+plot(cam_canberras,hang=-1,main="titre",sub="sous titre",xlab="axe x",ylab="dist euclidienne")
+```
+
